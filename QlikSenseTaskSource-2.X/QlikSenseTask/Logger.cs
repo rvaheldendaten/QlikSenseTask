@@ -86,10 +86,17 @@ namespace MyLogger
                 string historytemp = historyFile.Extension;
                 if (historyFile.Extension == ".log")
                 {
+                    try
+                    {
                     Log(LogLevel.Information, "Deleting Log File: " + historyFile.Name);
                     string historytemp2 = historyFile.FullName;
                     DateTime historytemp3 = historyFile.LastWriteTime;
                     historyFile.Delete();
+                    }
+                    catch (Exception del)
+                    {
+                     Log(LogLevel.Warning, "Unable to delete: " + historyFile.Name);
+                    }
                 }
             }
         }
